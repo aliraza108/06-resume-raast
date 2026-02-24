@@ -68,11 +68,26 @@ const Hero = () => {
                 onClick={scrollToUpload}
                 className="cta-button rounded-[4px] bg-hotGlow px-10 py-4 text-sm font-bold uppercase tracking-[0.3em] text-white shadow-neon transition duration-300 hover:scale-[1.03]"
               >
-                RoaSt Me
+                Drop & Roast
               </button>
               <span className="hero-note text-sm font-semibold text-textSecondary uppercase tracking-[0.4em]">
                 API-powered | Gemini AI vibe
               </span>
+            </div>
+            <div className="hero-upload-card mt-8">
+              <div className="hero-upload-top">
+                <span className="hero-upload-tag">PDF Upload</span>
+                <span className="hero-upload-status">Ready to roast</span>
+              </div>
+              <p className="hero-upload-copy">
+                Drop your latest PDF, label it savage, and the roast engine feeds it straight into the
+                Next.js harness.
+              </p>
+              <div className="hero-upload-steps">
+                <span>1. Upload PDF</span>
+                <span>2. Pick a vibe</span>
+                <span>3. Roast & copy</span>
+              </div>
             </div>
           </div>
           <div className="hero-panel">

@@ -14,6 +14,14 @@ const downloadOptions = [
     copy: "Drop PDFs, toggle savage modes, and mass roast from your home rig.",
     action: "Download Desktop",
     hint: "Offline mode + drag-and-drop convenience"
+  },
+  {
+    title: "Next.js Roaster",
+    platform: "Next.js + Vite",
+    copy: "Clone the Next.js starter, plug in your API key, and deploy to Vercel for persistent roasts.",
+    action: "Install Next.js",
+    hint: "npm run dev • Vercel ready",
+    command: "npx create-next-app resume-roaster && npm install && npm run dev"
   }
 ];
 
@@ -43,9 +51,14 @@ const DownloadSection = () => {
               <h3 className="download-title">{option.title}</h3>
               <p className="download-copy">{option.copy}</p>
               <p className="download-hint">{option.hint}</p>
-              <button type="button" className="download-cta">
-                {option.action}
-              </button>
+              <div className="download-cta-group">
+                <button type="button" className="download-cta">
+                  {option.action}
+                </button>
+                {option.command && (
+                  <code className="download-command">{option.command}</code>
+                )}
+              </div>
             </article>
           ))}
         </div>
