@@ -5,8 +5,19 @@ import useTypewriter from "../hooks/useTypewriter";
 
 const ResultSection = ({ result, error, onRoastAgain }) => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
-  const roastText = result?.roast || "";
-  const { displayed } = useTypewriter(roastText, 18, Boolean(result));
+  const rawRoast =
+    result?.roast ||
+    result?.roast_text ||
+    result?.response ||
+    result?.message ||
+    "";
+  const fallbackOutput =
+    result && !rawRoast
+      ? `\`\`\`json\n${JSON.stringify(result, null, 2)}\n\`\`\``
+      : rawRoast;
+  const outputText = rawRoast || fallbackOutput;
+  const typeSpeed = outputText.length > 1600 ? 8 : 18;
+  const { displayed } = useTypewriter(outputText, typeSpeed, Boolean(result));
   const [copied, setCopied] = useState(false);
 
   const chips = useMemo(() => {
@@ -21,12 +32,12 @@ const ResultSection = ({ result, error, onRoastAgain }) => {
 
   useEffect(() => {
     setCopied(false);
-  }, [roastText]);
+  }, [outputText]);
 
   const handleCopy = async () => {
-    if (!roastText) return;
+    if (!outputText) return;
     try {
-      await navigator.clipboard.writeText(roastText);
+      await navigator.clipboard.writeText(outputText);
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     } catch (err) {
@@ -35,8 +46,8 @@ const ResultSection = ({ result, error, onRoastAgain }) => {
   };
 
   const handleShare = (platform) => {
-    if (!roastText) return;
-    const text = encodeURIComponent(roastText);
+    if (!outputText) return;
+    const text = encodeURIComponent(outputText);
     const url = encodeURIComponent(window.location.href);
     const links = {
       twitter: `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
