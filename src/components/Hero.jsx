@@ -116,6 +116,9 @@ const Hero = () => {
           <span className="text-xs uppercase tracking-[0.4em] text-textSecondary">Scroll</span>
           <span className="hero-arrow">↓</span>
         </div>
+        <div className="hero-vibe-trail" aria-hidden="true">
+          🔥😭💀🔥💀🔥😭💀🔥🔥💀🔥🔥😭💀🔥
+        </div>
       </div>
     </section>
   );

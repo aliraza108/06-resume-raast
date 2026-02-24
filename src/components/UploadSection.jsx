@@ -55,41 +55,55 @@ const UploadSection = ({
           <span className="badge">Powered by Gemini AI</span>
         </div>
 
-        <div
-          className={`dropzone mt-10 ${dragActive || file ? "dropzone-active" : ""}`}
-          style={{
-            "--dash-color": dragActive || file ? "#00F5D4" : "rgba(255,255,255,0.35)"
-          }}
-          onDragOver={(event) => {
-            event.preventDefault();
-            setDragActive(true);
-          }}
-          onDragLeave={() => setDragActive(false)}
-          onDrop={handleDrop}
-          onClick={() => inputRef.current && inputRef.current.click()}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(event) => {
-            if (event.key === "Enter" || event.key === " ") {
-              event.preventDefault();
-              inputRef.current && inputRef.current.click();
-            }
-          }}
-        >
-          <input
-            ref={inputRef}
-            type="file"
-            accept="application/pdf"
-            className="hidden"
-            onChange={handleFileChange}
-          />
-          <div className="text-center">
-            <p className="text-lg font-semibold text-white">
-              {file ? "PDF locked in ✅" : "Drop it like it's hot 🔥"}
-            </p>
-            <p className="mt-2 text-sm text-textSecondary">
-              {file ? file.name : "Drag & drop or click to browse"}
-            </p>
+        <div className="main-tool-shell mt-10">
+          <div className="main-tool-outline" aria-hidden="true" />
+          <div className="main-tool-content">
+            <div
+              className={`dropzone ${dragActive || file ? "dropzone-active" : ""}`}
+              style={{
+                "--dash-color": dragActive || file ? "#00F5D4" : "rgba(255,255,255,0.35)"
+              }}
+              onDragOver={(event) => {
+                event.preventDefault();
+                setDragActive(true);
+              }}
+              onDragLeave={() => setDragActive(false)}
+              onDrop={handleDrop}
+              onClick={() => inputRef.current && inputRef.current.click()}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  inputRef.current && inputRef.current.click();
+                }
+              }}
+            >
+              <input
+                ref={inputRef}
+                type="file"
+                accept="application/pdf"
+                className="hidden"
+                onChange={handleFileChange}
+              />
+              <div className="text-center">
+                <p className="text-lg font-semibold text-white">
+                  {file ? "PDF locked in ✅" : "Drop it like it's hot 🔥"}
+                </p>
+                <p className="mt-2 text-sm text-textSecondary">
+                  {file ? file.name : "Drag & drop or click to browse"}
+                </p>
+                <div className="dropzone-emojis">🔥😭💀🔥💀🔥😭💀</div>
+              </div>
+            </div>
+
+            <div className="main-tool-lowdown">
+              <p className="text-sm uppercase tracking-[0.3em] text-textSecondary">PDF Upload</p>
+              <p className="text-xl font-bold text-white">Roast level: {settings.roastLevel}</p>
+              <p className="text-sm text-textSecondary">
+                Drop your PDF, pick a vibe, then hit the roast trigger—this is the duel arena.
+              </p>
+            </div>
           </div>
         </div>
 
