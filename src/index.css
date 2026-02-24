@@ -373,6 +373,93 @@ input[type="file"] {
   margin-bottom: 16px;
 }
 
+.footer-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.icon-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.icon-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(0, 245, 212, 0.4);
+}
+
+.social-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.social-card {
+  position: relative;
+  border-radius: 14px;
+  padding: 16px 18px;
+  text-align: left;
+  background: rgba(26, 26, 46, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.social-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 0 20px rgba(233, 69, 96, 0.35);
+}
+
+.social-emoji {
+  position: absolute;
+  right: 14px;
+  bottom: 6px;
+  font-size: 46px;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.social-name {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.social-url {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  word-break: break-all;
+}
+
+.email-card {
+  position: relative;
+  border-radius: 14px;
+  padding: 18px;
+  background: rgba(26, 26, 46, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.email-link {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
 @keyframes float {
   0% {
     transform: translateY(0) translateX(0);
