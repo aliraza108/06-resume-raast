@@ -69,56 +69,60 @@ const ResultSection = ({ result, error, onRoastAgain }) => {
           Your roast just landed.
         </h2>
 
-        {error ? (
-          <div className="error-card mt-8">
-            <h3 className="text-xl font-bold text-white">😭 Roast failed</h3>
-            <p className="mt-3 text-sm text-textSecondary">{error}</p>
+        <div className="result-shell mt-8">
+          <div className="result-shell-inner">
+            {error ? (
+              <div className="error-card mt-4">
+                <h3 className="text-xl font-bold text-white">😭 Roast failed</h3>
+                <p className="mt-3 text-sm text-textSecondary">{error}</p>
+              </div>
+            ) : (
+              <>
+                <div className="result-meta mt-2">
+                  {chips.map((chip) => (
+                    <span key={chip.label} className="chip">
+                      <span className="chip-label">{chip.label}</span>
+                      <span className="chip-value">{chip.value}</span>
+                    </span>
+                  ))}
+                </div>
+
+                <div className="result-card mt-5">
+                  <ReactMarkdown className="markdown-body">{displayed}</ReactMarkdown>
+                </div>
+
+                <div className="mt-6 flex flex-wrap gap-4">
+                  <button type="button" className="secondary-button" onClick={handleCopy}>
+                    {copied ? "Copied!" : "Copy Roast 📋"}
+                  </button>
+                  <button type="button" className="secondary-button" onClick={onRoastAgain}>
+                    Roast Again 🔄
+                  </button>
+                </div>
+
+                <div className="mt-8 flex flex-wrap items-center gap-4">
+                  <span className="text-sm uppercase tracking-[0.3em] text-textSecondary">
+                    Share your roast
+                  </span>
+                  <button
+                    type="button"
+                    className="share-button"
+                    onClick={() => handleShare("twitter")}
+                  >
+                    Twitter
+                  </button>
+                  <button
+                    type="button"
+                    className="share-button"
+                    onClick={() => handleShare("whatsapp")}
+                  >
+                    WhatsApp
+                  </button>
+                </div>
+              </>
+            )}
           </div>
-        ) : (
-          <>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {chips.map((chip) => (
-                <span key={chip.label} className="chip">
-                  <span className="chip-label">{chip.label}</span>
-                  <span className="chip-value">{chip.value}</span>
-                </span>
-              ))}
-            </div>
-
-            <div className="result-card mt-8">
-              <ReactMarkdown className="markdown-body">{displayed}</ReactMarkdown>
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-4">
-              <button type="button" className="secondary-button" onClick={handleCopy}>
-                {copied ? "Copied!" : "Copy Roast 📋"}
-              </button>
-              <button type="button" className="secondary-button" onClick={onRoastAgain}>
-                Roast Again 🔄
-              </button>
-            </div>
-
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <span className="text-sm uppercase tracking-[0.3em] text-textSecondary">
-                Share your roast
-              </span>
-              <button
-                type="button"
-                className="share-button"
-                onClick={() => handleShare("twitter")}
-              >
-                Twitter
-              </button>
-              <button
-                type="button"
-                className="share-button"
-                onClick={() => handleShare("whatsapp")}
-              >
-                WhatsApp
-              </button>
-            </div>
-          </>
-        )}
+        </div>
       </div>
     </section>
   );
