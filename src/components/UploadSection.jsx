@@ -45,19 +45,20 @@ const UploadSection = ({
   return (
     <section id="upload" ref={ref} className={`section ${isVisible ? "reveal is-visible" : "reveal"}`}>
       <div className="mx-auto max-w-5xl px-6">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <p className="label-badge">Main Tool</p>
-            <h2 className="mt-4 font-heading text-3xl font-bold text-white">
-              Upload. Configure. Get flamed.
-            </h2>
+        <div className="section-surface upload-surface">
+          <div className="section-surface-heading flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <p className="label-badge">Main Tool</p>
+              <h2 className="mt-4 font-heading text-3xl font-bold text-white">
+                Upload. Configure. Get flamed.
+              </h2>
+            </div>
+            <span className="badge">Powered by Gemini AI</span>
           </div>
-          <span className="badge">Powered by Gemini AI</span>
-        </div>
 
-        <div className="main-tool-shell mt-10">
-          <div className="main-tool-outline" aria-hidden="true" />
-          <div className="main-tool-content">
+          <div className="main-tool-shell mt-10">
+            <div className="main-tool-outline" aria-hidden="true" />
+            <div className="main-tool-content">
             <div
               className={`dropzone ${dragActive || file ? "dropzone-active" : ""}`}
               style={{
@@ -105,12 +106,12 @@ const UploadSection = ({
               </p>
             </div>
           </div>
-        </div>
+          </div>
 
-        <div className="upload-config-shell mt-12">
-          <div className="upload-config-header">
-            <p className="label-badge">Roast Settings</p>
-            <h3 className="font-heading text-xl font-bold text-white">
+          <div className="upload-config-shell mt-12">
+            <div className="upload-config-header">
+              <p className="label-badge">Roast Settings</p>
+              <h3 className="font-heading text-xl font-bold text-white">
               Dial the burn intensity and role tone
             </h3>
           </div>
@@ -182,11 +183,11 @@ const UploadSection = ({
           </div>
         </div>
 
-        <div className="mt-10">
-          <button
-            type="button"
-            onClick={handleSubmit}
-            disabled={isLoading}
+          <div className="mt-10">
+            <button
+              type="button"
+              onClick={handleSubmit}
+              disabled={isLoading}
             className={`cta-button w-full ${isShaking ? "animate-shake" : ""}`}
           >
             {isLoading ? "ROASTING..." : buttonText}
