@@ -107,70 +107,78 @@ const UploadSection = ({
           </div>
         </div>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          <div className="control-card">
-            <p className="control-label">Roast Level</p>
-            <div className="segmented-group mt-4">
-              {roastLevels.map((level) => (
-                <button
-                  key={level}
-                  type="button"
-                  onClick={() => setSettings({ ...settings, roastLevel: level })}
-                  className={`control-pill ${settings.roastLevel === level ? "is-selected" : ""}`}
-                >
-                  {level}
-                </button>
-              ))}
-            </div>
+        <div className="upload-config-shell mt-12">
+          <div className="upload-config-header">
+            <p className="label-badge">Roast Settings</p>
+            <h3 className="font-heading text-xl font-bold text-white">
+              Dial the burn intensity and role tone
+            </h3>
           </div>
-
-          <div className="control-card">
-            <p className="control-label">Roast Status</p>
-            <div className="mt-4 flex flex-wrap gap-3">
-              {roastStatuses.map((status) => (
-                <button
-                  key={status}
-                  type="button"
-                  onClick={() => setSettings({ ...settings, roastStatus: status })}
-                  className={`control-pill ${settings.roastStatus === status ? "is-selected" : ""}`}
-                >
-                  {status}
-                </button>
-              ))}
+          <div className="upload-config-grid">
+            <div className="control-card">
+              <p className="control-label">Roast Level</p>
+              <div className="segmented-group mt-4">
+                {roastLevels.map((level) => (
+                  <button
+                    key={level}
+                    type="button"
+                    onClick={() => setSettings({ ...settings, roastLevel: level })}
+                    className={`control-pill ${settings.roastLevel === level ? "is-selected" : ""}`}
+                  >
+                    {level}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div className="control-card">
-            <p className="control-label">Role Type</p>
-            <div className="mt-4 flex flex-wrap gap-3">
-              {roleTypes.map((role) => (
-                <button
-                  key={role}
-                  type="button"
-                  onClick={() => setSettings({ ...settings, roleType: role })}
-                  className={`control-pill ${settings.roleType === role ? "is-selected" : ""}`}
-                >
-                  {role}
-                </button>
-              ))}
+            <div className="control-card">
+              <p className="control-label">Roast Status</p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                {roastStatuses.map((status) => (
+                  <button
+                    key={status}
+                    type="button"
+                    onClick={() => setSettings({ ...settings, roastStatus: status })}
+                    className={`control-pill ${settings.roastStatus === status ? "is-selected" : ""}`}
+                  >
+                    {status}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div className="control-card">
-            <p className="control-label">Language</p>
-            <select
-              value={settings.language}
-              onChange={(event) =>
-                setSettings({ ...settings, language: event.target.value })
-              }
-              className="select-field mt-4"
-            >
-              {languages.map((language) => (
-                <option key={language} value={language}>
-                  {language}
-                </option>
-              ))}
-            </select>
+            <div className="control-card">
+              <p className="control-label">Role Type</p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                {roleTypes.map((role) => (
+                  <button
+                    key={role}
+                    type="button"
+                    onClick={() => setSettings({ ...settings, roleType: role })}
+                    className={`control-pill ${settings.roleType === role ? "is-selected" : ""}`}
+                  >
+                    {role}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="control-card">
+              <p className="control-label">Language</p>
+              <select
+                value={settings.language}
+                onChange={(event) =>
+                  setSettings({ ...settings, language: event.target.value })
+                }
+                className="select-field mt-4"
+              >
+                {languages.map((language) => (
+                  <option key={language} value={language}>
+                    {language}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
 
