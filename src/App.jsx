@@ -70,9 +70,11 @@ const App = () => {
   }, [result, error]);
 
   return (
-    <div className="min-h-screen bg-primary text-textPrimary">
+    <div className="app-shell">
       <Hero />
+      <div className="section-divider" aria-hidden="true" />
       <HowItWorks />
+      <div className="section-divider" aria-hidden="true" />
       <UploadSection
         file={file}
         setFile={setFile}
@@ -81,6 +83,7 @@ const App = () => {
         onSubmit={handleSubmit}
         isLoading={isLoading}
       />
+      <div className="section-divider" aria-hidden="true" />
       <ResultSection result={result} error={error} onRoastAgain={handleRoastAgain} />
       <Footer />
     </div>

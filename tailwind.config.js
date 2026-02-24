@@ -13,8 +13,8 @@ export default {
         textSecondary: "#A0A0B0"
       },
       fontFamily: {
-        heading: ["Space Grotesk", "sans-serif"],
-        body: ["Inter", "sans-serif"]
+        heading: ["Sora", "sans-serif"],
+        body: ["Manrope", "sans-serif"]
       },
       boxShadow: {
         neon: "0 0 20px rgba(233, 69, 96, 0.5)"
