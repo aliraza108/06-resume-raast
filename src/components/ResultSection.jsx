@@ -6,11 +6,7 @@ import useTypewriter from "../hooks/useTypewriter";
 const ResultSection = ({ result, error, onRoastAgain }) => {
   const { ref, isVisible } = useIntersectionObserver({ threshold: 0.1 });
   const rawRoast =
-    result?.roast ||
-    result?.roast_text ||
-    result?.response ||
-    result?.message ||
-    "";
+    result?.roast || result?.resume_text || result?.response || result?.message || "";
   const fallbackOutput =
     result && !rawRoast
       ? `\`\`\`json\n${JSON.stringify(result, null, 2)}\n\`\`\``
@@ -59,11 +55,13 @@ const ResultSection = ({ result, error, onRoastAgain }) => {
 
   if (!result && !error) return null;
 
+  const shouldReveal = Boolean(result || error || isVisible);
+
   return (
     <section
       id="results"
       ref={ref}
-      className={`section ${isVisible ? "reveal is-visible" : "reveal"}`}
+      className={`section reveal ${shouldReveal ? "is-visible" : ""}`}
     >
       <div className="mx-auto max-w-5xl px-6">
         <p className="label-badge">Results</p>
@@ -74,9 +72,7 @@ const ResultSection = ({ result, error, onRoastAgain }) => {
         {error ? (
           <div className="error-card mt-8">
             <h3 className="text-xl font-bold text-white">😭 Roast failed</h3>
-            <p className="mt-3 text-sm text-textSecondary">
-              {error}
-            </p>
+            <p className="mt-3 text-sm text-textSecondary">{error}</p>
           </div>
         ) : (
           <>

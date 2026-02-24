@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Hero from "./components/Hero";
 import HowItWorks from "./components/HowItWorks";
+import DownloadSection from "./components/DownloadSection";
 import UploadSection from "./components/UploadSection";
 import ResultSection from "./components/ResultSection";
 import Footer from "./components/Footer";
@@ -73,6 +74,7 @@ const App = () => {
     <div className="min-h-screen bg-primary text-textPrimary">
       <Hero />
       <HowItWorks />
+      <DownloadSection />
       <UploadSection
         file={file}
         setFile={setFile}
