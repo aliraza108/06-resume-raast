@@ -43,7 +43,11 @@ const UploadSection = ({
     settings.roastLevel === "Brutal" ? "💀 DESTROY ME" : "🔥 ROAST MY RESUME";
 
   return (
-    <section id="upload" ref={ref} className={`section ${isVisible ? "reveal is-visible" : "reveal"}`}>
+    <section
+      id="upload"
+      ref={ref}
+      className={`section ${isVisible ? "reveal is-visible" : "reveal"}`}
+    >
       <div className="mx-auto max-w-5xl px-6">
         <div className="section-surface upload-surface">
           <div className="section-surface-heading flex flex-wrap items-center justify-between gap-4">
@@ -59,142 +63,143 @@ const UploadSection = ({
           <div className="main-tool-shell mt-10">
             <div className="main-tool-outline" aria-hidden="true" />
             <div className="main-tool-content">
-            <div
-              className={`dropzone ${dragActive || file ? "dropzone-active" : ""}`}
-              style={{
-                "--dash-color": dragActive || file ? "#00F5D4" : "rgba(255,255,255,0.35)"
-              }}
-              onDragOver={(event) => {
-                event.preventDefault();
-                setDragActive(true);
-              }}
-              onDragLeave={() => setDragActive(false)}
-              onDrop={handleDrop}
-              onClick={() => inputRef.current && inputRef.current.click()}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === " ") {
+              <div
+                className={`dropzone ${dragActive || file ? "dropzone-active" : ""}`}
+                style={{
+                  "--dash-color": dragActive || file ? "#00F5D4" : "rgba(255,255,255,0.35)"
+                }}
+                onDragOver={(event) => {
                   event.preventDefault();
-                  inputRef.current && inputRef.current.click();
-                }
-              }}
-            >
-              <input
-                ref={inputRef}
-                type="file"
-                accept="application/pdf"
-                className="hidden"
-                onChange={handleFileChange}
-              />
-              <div className="text-center">
-                <p className="text-lg font-semibold text-white">
-                  {file ? "PDF locked in ✅" : "Drop it like it's hot 🔥"}
+                  setDragActive(true);
+                }}
+                onDragLeave={() => setDragActive(false)}
+                onDrop={handleDrop}
+                onClick={() => inputRef.current && inputRef.current.click()}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    inputRef.current && inputRef.current.click();
+                  }
+                }}
+              >
+                <input
+                  ref={inputRef}
+                  type="file"
+                  accept="application/pdf"
+                  className="hidden"
+                  onChange={handleFileChange}
+                />
+                <div className="text-center">
+                  <p className="text-lg font-semibold text-white">
+                    {file ? "PDF locked in ✅" : "Drop it like it's hot 🔥"}
+                  </p>
+                  <p className="mt-2 text-sm text-textSecondary">
+                    {file ? file.name : "Drag & drop or click to browse"}
+                  </p>
+                  <div className="dropzone-emojis">🔥😭💀🔥💀🔥😭💀</div>
+                </div>
+              </div>
+
+              <div className="main-tool-lowdown">
+                <p className="text-sm uppercase tracking-[0.3em] text-textSecondary">PDF Upload</p>
+                <p className="text-xl font-bold text-white">Roast level: {settings.roastLevel}</p>
+                <p className="text-sm text-textSecondary">
+                  Drop your PDF, pick a vibe, then hit the roast trigger-this is the duel arena.
                 </p>
-                <p className="mt-2 text-sm text-textSecondary">
-                  {file ? file.name : "Drag & drop or click to browse"}
-                </p>
-                <div className="dropzone-emojis">🔥😭💀🔥💀🔥😭💀</div>
               </div>
             </div>
-
-            <div className="main-tool-lowdown">
-              <p className="text-sm uppercase tracking-[0.3em] text-textSecondary">PDF Upload</p>
-              <p className="text-xl font-bold text-white">Roast level: {settings.roastLevel}</p>
-              <p className="text-sm text-textSecondary">
-                Drop your PDF, pick a vibe, then hit the roast trigger—this is the duel arena.
-              </p>
-            </div>
-          </div>
           </div>
 
           <div className="upload-config-shell mt-12">
             <div className="upload-config-header">
               <p className="label-badge">Roast Settings</p>
               <h3 className="font-heading text-xl font-bold text-white">
-              Dial the burn intensity and role tone
-            </h3>
+                Dial the burn intensity and role tone
+              </h3>
+            </div>
+            <div className="upload-config-grid">
+              <div className="control-card">
+                <p className="control-label">Roast Level</p>
+                <div className="segmented-group mt-4">
+                  {roastLevels.map((level) => (
+                    <button
+                      key={level}
+                      type="button"
+                      onClick={() => setSettings({ ...settings, roastLevel: level })}
+                      className={`control-pill ${settings.roastLevel === level ? "is-selected" : ""}`}
+                    >
+                      {level}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="control-card">
+                <p className="control-label">Roast Status</p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  {roastStatuses.map((status) => (
+                    <button
+                      key={status}
+                      type="button"
+                      onClick={() => setSettings({ ...settings, roastStatus: status })}
+                      className={`control-pill ${settings.roastStatus === status ? "is-selected" : ""}`}
+                    >
+                      {status}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="control-card">
+                <p className="control-label">Role Type</p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  {roleTypes.map((role) => (
+                    <button
+                      key={role}
+                      type="button"
+                      onClick={() => setSettings({ ...settings, roleType: role })}
+                      className={`control-pill ${settings.roleType === role ? "is-selected" : ""}`}
+                    >
+                      {role}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="control-card">
+                <p className="control-label">Language</p>
+                <select
+                  value={settings.language}
+                  onChange={(event) =>
+                    setSettings({ ...settings, language: event.target.value })
+                  }
+                  className="select-field mt-4"
+                >
+                  {languages.map((language) => (
+                    <option key={language} value={language}>
+                      {language}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
           </div>
-          <div className="upload-config-grid">
-            <div className="control-card">
-              <p className="control-label">Roast Level</p>
-              <div className="segmented-group mt-4">
-                {roastLevels.map((level) => (
-                  <button
-                    key={level}
-                    type="button"
-                    onClick={() => setSettings({ ...settings, roastLevel: level })}
-                    className={`control-pill ${settings.roastLevel === level ? "is-selected" : ""}`}
-                  >
-                    {level}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="control-card">
-              <p className="control-label">Roast Status</p>
-              <div className="mt-4 flex flex-wrap gap-3">
-                {roastStatuses.map((status) => (
-                  <button
-                    key={status}
-                    type="button"
-                    onClick={() => setSettings({ ...settings, roastStatus: status })}
-                    className={`control-pill ${settings.roastStatus === status ? "is-selected" : ""}`}
-                  >
-                    {status}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="control-card">
-              <p className="control-label">Role Type</p>
-              <div className="mt-4 flex flex-wrap gap-3">
-                {roleTypes.map((role) => (
-                  <button
-                    key={role}
-                    type="button"
-                    onClick={() => setSettings({ ...settings, roleType: role })}
-                    className={`control-pill ${settings.roleType === role ? "is-selected" : ""}`}
-                  >
-                    {role}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="control-card">
-              <p className="control-label">Language</p>
-              <select
-                value={settings.language}
-                onChange={(event) =>
-                  setSettings({ ...settings, language: event.target.value })
-                }
-                className="select-field mt-4"
-              >
-                {languages.map((language) => (
-                  <option key={language} value={language}>
-                    {language}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-        </div>
 
           <div className="mt-10">
             <button
               type="button"
               onClick={handleSubmit}
               disabled={isLoading}
-            className={`cta-button w-full ${isShaking ? "animate-shake" : ""}`}
-          >
-            {isLoading ? "ROASTING..." : buttonText}
-          </button>
-        </div>
+              className={`cta-button w-full ${isShaking ? "animate-shake" : ""}`}
+            >
+              {isLoading ? "ROASTING..." : buttonText}
+            </button>
+          </div>
 
-        <LoadingState isLoading={isLoading} />
+          <LoadingState isLoading={isLoading} />
+        </div>
       </div>
     </section>
   );
